@@ -17,6 +17,7 @@ import edu.iis.powp.events.predefine.figureslisteners.SelectTestFigureOptionJoe2
 import edu.iis.powp.events.predefine.figureslisteners.SelectTestFigureOptionJoeListener;
 import edu.kis.powp.drawer.panel.DefaultDrawerFrame;
 import edu.kis.powp.drawer.panel.DrawPanelController;
+import edu.kis.powp.drawer.shape.LineFactory;
 
 
 public class TestPlotSoftPatterns
@@ -47,7 +48,10 @@ public class TestPlotSoftPatterns
 		
 		IPlotter plotter = new VisualPlotterAdapter(Application.getComponent(DrawPanelController.class));
 		context.addDriver("Buggy Simulator", plotter);
-
+		
+		IPlotter plotterSpecial = new VisualPlotterAdapter(Application.getComponent(DrawPanelController.class), LineFactory.getDottedLine());
+        context.addDriver("Special Buggy Simulator", plotterSpecial);
+        
 		context.updateDriverInfo();
 	}
 

@@ -14,11 +14,17 @@ public class VisualPlotterAdapter implements IPlotter
 { 
 	private int startX = 0, startY = 0;
 	private final DrawPanelController controller;
+	private ILine line = LineFactory.getBasicLine(); 
 	
-    public VisualPlotterAdapter(DrawPanelController controller) {
+    public VisualPlotterAdapter(DrawPanelController controller, ILine line) {
 		super();
 		this.controller = controller;
+		this.line = line;
 	}
+    public VisualPlotterAdapter(DrawPanelController controller) {
+        super();
+        this.controller = controller;
+    }
     
 	@Override
     public void setPosition(int x, int y)
@@ -30,7 +36,6 @@ public class VisualPlotterAdapter implements IPlotter
     @Override
     public void drawTo(int x, int y)
     {
-        ILine line = LineFactory.getBasicLine();
     	line.setStartCoordinates(this.startX, this.startY);
         line.setEndCoordinates(x, y);
         controller.drawLine(line);
